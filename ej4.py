@@ -10,16 +10,18 @@ altura = int(input('Ingresa la altura: '))
 imagen = Image.open(img_route)
 
 nombre = 'RECORTES'
-path = '\\institutodc01\d46766768\Python\guia04'
+path = 'D:\TP de Programacion\Python\guia mapa de bits\guia_04'
 full_path = os.path.join(path, nombre)
 
 os.makedirs(full_path, exist_ok=True)
 
 croppedIm = imagen.crop((cordenadax, cordenaday, ancho, altura))
 
-for i in range(1, 100):        
-    if(os.path.exists(f'recorte{i}.png')):
-        croppedIm.save(f'recorte{i+1}.png')
-        break
+i = 1
+while True:
+    if os.path.exists(os.path.join(full_path, f'recorte{i}.png')):
+        i += 1
     else:
-        croppedIm.save('recorte1.png')
+        croppedIm.save(os.path.join(full_path, f'recorte{i}.png'))
+        break
+    
